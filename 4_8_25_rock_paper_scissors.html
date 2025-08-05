@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<body>
+    <h1>rock paper scissors</h1>
+    <button onclick="gameresult('rock')">Rock</button>
+    <button onclick="gameresult('paper')">Paper</button>
+    <button onclick="gameresult('scissors')">Scissors</button>
+    <button onclick="obj.wins=0;obj.losses=0;obj.ties=0  " >reset</button>
+<script>
+    let obj = JSON.parse(localStorage.getItem('obj'))
+if(!obj ){
+    obj={
+    wins:0,
+    losses:0,
+    ties:0
+}}
+function gameresult(y){
+let  computermove='';
+let x=Math.random();
+if (x<=1/3 && x>0){
+   computermove='rock'
+}
+else if (x>1/3 && x<2/3){
+    computermove='paper'
+}
+else{
+    computermove='scissors'
+}
+
+    let result='';
+    if(y==='rock'){
+        if (computermove==='rock')
+           result=`TIE`
+        if(computermove=='paper'){
+           result=`you win`}
+        if (computermove==='scissors'){
+            result=`computer wins`
+        }
+        
+        
+    }
+    if(y==='paper'){
+        if (computermove==='rock')
+           result=`you win`
+        if(computermove=='paper'){
+           result=`TIE`}
+        if (computermove==='scissors'){
+            result=`computer wins`
+        }
+       
+    }
+    if(y==='scissors'){
+        if (computermove==='rock')
+           result=`computer wins`
+        if(computermove=='paper'){
+           result=`you win`}
+        if (computermove==='scissors'){
+            result=`TIE`
+        }
+        
+    }
+   
+
+  if (result==='computer wins'){
+      obj.losses += 1
+  } 
+  if (result==='you win'){
+     obj.wins += 1
+  }  
+  if (result==='TIE'){
+     obj.ties +=1 
+  }
+    alert(`you picked ${y} , computer picked ${computermove} , ${result}
+    wins:${obj.wins} , losses :${obj.losses} , ties :${obj.ties}`)  
+    localStorage.setItem('obj',JSON.stringify(obj))
+
+}
+
+</script>    
+
+</body>
+</html>
