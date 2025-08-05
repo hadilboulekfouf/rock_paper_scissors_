@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+</head>
+<style>
+    .s {
+      color: white;
+      background-color:black ;
+      padding: 10px 10px 10px 10px;
+      border-radius: 15px;
+      cursor: pointer;;
+    }
+    .d {
+       color: black;
+       background-color: rgb(209, 209, 209);
+    
+    }
+</style>
+<body>
+    <p>youtube subscribe button</p>
+    <button class='s' onclick="subscribtion()">Subscribe</button>
+    
+  
+    <p>rock paper scissors </p>
+    <a href="4_8_25_rock_paper_scissors.html">click here !</a>
+    <p >amazon shipping calculator<br>
+        order under 40$ = +10$ shipping<br> 
+        order over 40$ = free shipping
+    </p>
+    <input class="p" placeholder="Enter here " onkeydown="pressing(event)">
+    <button onclick="calculation()">calculate</button>
+    <p class="c"></p>
+<script>
+    function pressing(event){
+        if(event.key=='Enter')
+         calculation()
+    }
+    function subscribtion(){
+        let a= document.querySelector('.s')
+        if(a.innerText ==='Subscribe'){
+            a.innerHTML='Subscribed'
+            a.classList.add('d')
+        }
+        else{
+            a.innerHTML='Subscribe'
+            a.classList.remove('d')
+        }
+    }
+    function calculation(){
+        let  b=document.querySelector('.p')
+        let inp =  Number(b.value )
+        if (inp <=40){
+            inp += 10
+        }
+        
+        document.querySelector('.c').innerHTML=inp;
+    }
+</script>   
+</body>
+</html>
