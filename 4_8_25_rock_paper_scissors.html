@@ -5,12 +5,24 @@
     <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
     <title>Document</title>
 </head>
+<style>
+    .images{
+     flex: 1;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      border: 1px solid #ccc;
+      cursor: pointer;
+      border-radius: 90px;
+  }
+</style>
 <body>
     <h1>rock paper scissors</h1>
-    <button onclick="gameresult('rock')">Rock</button>
-    <button onclick="gameresult('paper')">Paper</button>
-    <button onclick="gameresult('scissors')">Scissors</button>
-    <button onclick="obj.wins=0;obj.losses=0;obj.ties=0  " >reset</button>
+    <button onclick="gameresult('rock')" ><img  class="images" src="Screenshot (612).png"></button>
+    <button onclick="gameresult('paper')"><img  class="images"  src="p.png"></button>
+    <button   onclick="gameresult('scissors')"><img  class="images"  src="paper.png"></button><br>
+     <p class="al"></p>
+    <button onclick="obj.wins=0;obj.losses=0;obj.ties=0 " >reset</button>
 <script>
     let obj = JSON.parse(localStorage.getItem('obj'))
 if(!obj ){
@@ -75,8 +87,10 @@ else{
   if (result==='TIE'){
      obj.ties +=1 
   }
-    alert(`you picked ${y} , computer picked ${computermove} , ${result}
-    wins:${obj.wins} , losses :${obj.losses} , ties :${obj.ties}`)  
+  document.querySelector('.al').innerHTML=`you picked ${y} ${y.png} , computer picked ${computermove.png} , ${result}
+
+wins:${obj.wins} , losses :${obj.losses} , ties :${obj.ties}`
+    
     localStorage.setItem('obj',JSON.stringify(obj))
 
 }
