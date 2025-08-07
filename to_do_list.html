@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>To-Do App</title>
+</head>
+<body>
+    <input placeholder="Enter chore here" class="a">
+    <input type="date" class="b" onkeydown="pressing(event)">
+    <button class="c" onclick="todo()">Add!</button>
+    <div class="d"></div>
+
+    <script>
+    let inputchore = document.querySelector('.a');
+    let inputdate = document.querySelector('.b');
+    let inputlist = document.querySelector('.d');
+    let arr = [];  // 🔵 Global array to store todos
+
+    function pressing(event) {
+        if (event.key === 'Enter') {
+            todo();
+        }
+    }
+
+    function todo() {
+        if (inputchore.value.trim() === '') return;
+
+        const fordo = {
+            chore: inputchore.value,
+            datetodo: inputdate.value || 'no date'
+        };
+
+        arr.push(fordo); // Add the new chore to the array
+
+        renderTodos();  // Display them on screen
+        inputchore.value = ''; // Clear input
+        inputdate.value = '';  // Optional: clear date
+    }
+
+    function renderTodos() {
+        let result = '';
+        for (let i = 0; i < arr.length; i++) {
+            result += `<p> ${arr[i].chore} - ${arr[i].datetodo} 
+                <button onclick="deletechore(${i})">Delete</button></p>`;
+        }
+        inputlist.innerHTML = result;
+    }
+
+    function deletechore(index) {
+        arr.splice(index, 1);  // Remove from array
+        renderTodos();         // Re-render
+    }
+    </script>
+</body>
+</html>
