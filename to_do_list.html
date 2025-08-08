@@ -2,55 +2,47 @@
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>To-Do App</title>
+    <meta name="viewport" content="width=<device-width>, initial-scale=1.0">
+    <title>Document</title>
 </head>
 <body>
-    <input placeholder="Enter chore here" class="a">
-    <input type="date" class="b" onkeydown="pressing(event)">
-    <button class="c" onclick="todo()">Add!</button>
+    <input class="a" type="text" placeholder="enter chores here" onkeydown="clicking(event)">
+    <input class="b" type="date" onkeydown="clicking(event)" >
+    <button class="c" onclick="todo()" >Click me</button>
     <div class="d"></div>
-
-    <script>
-    let inputchore = document.querySelector('.a');
-    let inputdate = document.querySelector('.b');
-    let inputlist = document.querySelector('.d');
-    let arr = [];  // 🔵 Global array to store todos
-
-    function pressing(event) {
-        if (event.key === 'Enter') {
-            todo();
+<script>
+    let inputchore= document.querySelector('.a')
+    let inputdate= document.querySelector('.b')
+    let outputchore= document.querySelector('.d')
+    
+    let str = '';
+    function clicking(){
+        if(event.key=='Enter')
+         todo()
+    }
+    function todo(){
+        let arr=[]
+        const obj={
+            chore:inputchore.value ,
+            datee:inputdate.value
         }
+        
+        arr.push(obj)
+        
+        for(let i=0;i<arr.length;i++){
+            
+           dohtml =`<p> ${arr[i].chore} ${arr[i].datee} 
+                        <button
+                        onclick="todelete(${i})">delete</button></p>`
+           str += dohtml
+          
+           }
+     outputchore.innerHTML=str
     }
-
-    function todo() {
-        if (inputchore.value.trim() === '') return;
-
-        const fordo = {
-            chore: inputchore.value,
-            datetodo: inputdate.value || 'no date'
-        };
-
-        arr.push(fordo); // Add the new chore to the array
-
-        renderTodos();  // Display them on screen
-        inputchore.value = ''; // Clear input
-        inputdate.value = '';  // Optional: clear date
+    function todelete(index){
+        arr.splice(index,1)
+        
     }
-
-    function renderTodos() {
-        let result = '';
-        for (let i = 0; i < arr.length; i++) {
-            result += `<p> ${arr[i].chore} - ${arr[i].datetodo} 
-                <button onclick="deletechore(${i})">Delete</button></p>`;
-        }
-        inputlist.innerHTML = result;
-    }
-
-    function deletechore(index) {
-        arr.splice(index, 1);  // Remove from array
-        renderTodos();         // Re-render
-    }
-    </script>
+</script>
 </body>
 </html>
